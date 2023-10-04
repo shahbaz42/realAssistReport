@@ -4,10 +4,11 @@ import { useReactToPrint } from "react-to-print";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
+import { ILineChartData } from "../../types";
 
 const PrintableDocument = () => {
   const componentRef = useRef(null);
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<ILineChartData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const SERVER_URL = import.meta.env.VITE_SERVER_URI;
 

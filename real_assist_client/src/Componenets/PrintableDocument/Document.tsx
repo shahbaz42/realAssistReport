@@ -1,10 +1,14 @@
-import React from "react";
 import LineChartComp from "./LineChartComp";
-import { ILineChartData } from "../../types";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
+import { ILineChartData } from "../../types";
 
-const Document = (props: { data: any; reference: any; isLoading: boolean }) => {
-  const { data, reference, isLoading } = props;
+interface DocumentProps {
+  data: ILineChartData[];
+  reference: React.RefObject<HTMLDivElement>;
+  isLoading: boolean;
+}
+
+const Document = ({ data, reference, isLoading }: DocumentProps) => {
   return (
     <div
       ref={reference}

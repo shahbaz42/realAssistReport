@@ -1,9 +1,6 @@
 import {
   LineChart,
   Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
   Tooltip,
   Legend,
 } from "recharts";
@@ -22,9 +19,6 @@ export default function LineChartComp({ data }: { data: ILineChartData[] }) {
         bottom: 5,
       }}
     >
-      {/* <CartesianGrid strokeDasharray="3 3" /> */}
-      {/* <XAxis dataKey="name" /> */}
-      {/* <YAxis /> */}
       <Tooltip />
       <Legend />
       <Line
