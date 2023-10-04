@@ -1,10 +1,13 @@
 import React from "react";
 import LineChartComp from "./LineChartComp";
+import { ILineChartData } from "../../types";
+import { ArrowPathIcon } from "@heroicons/react/24/solid";
 
-const Document = React.forwardRef<HTMLDivElement, {}>((props, ref) => {
+const Document = (props: { data: any; reference: any; isLoading: boolean }) => {
+  const { data, reference, isLoading } = props;
   return (
     <div
-      ref={ref}
+      ref={reference}
       className="w-screen md:max-w-[768px] h-screen mx-auto bg-[#f7f9fc]"
     >
       {/* header */}
@@ -13,44 +16,57 @@ const Document = React.forwardRef<HTMLDivElement, {}>((props, ref) => {
           Market Insights
         </h3>
       </div>
-      <div className="bg-white mt-3 mx-3 rounded-2xl h-md border-2 border-[#e3e7f1]">
-        <div>
-          <h3 className="text-center mt-2 font-semibold text-sm">
-            Market Insights
-          </h3>
-          <h4 className="text-center font-semibold text-[#818bad] text-sm">
-            for 98114 - August 2nd, 2023
-          </h4>
+      {isLoading ? (
+        <div className="flex flex-col items-center justify-center h-[calc(100vh-50px)]">
+          <button
+            type="button"
+            className={`flex flex-row items-center justify-center text-white h-[52px] w-[52px] bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-smpy-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 ${
+              isLoading ? "animate-spin" : ""
+            }`}
+          >
+            <ArrowPathIcon className="h-[30px] w-[30px]" />
+          </button>
         </div>
+      ) : (
+        <div className="bg-white mt-3 mx-3 rounded-2xl h-md border-2 border-[#e3e7f1]">
+          <div>
+            <h3 className="text-center mt-2 font-semibold text-sm">
+              Market Insights
+            </h3>
+            <h4 className="text-center font-semibold text-[#818bad] text-sm">
+              for 98114 - August 2nd, 2023
+            </h4>
+          </div>
 
-        <div>
-          <h3 className="text-left ml-4 pt-2 mt-2 font-semibold text-md">
-            Sales vs List price
-          </h3>
-          <div className="flex flex-row justify-center px-6 items-center">
-            <div className="">10%</div>
-            <div>
-              <LineChartComp />
+          <div>
+            <h3 className="text-left ml-4 pt-2 mt-2 font-semibold text-md">
+              Sales vs List price
+            </h3>
+            <div className="flex flex-row justify-center px-6 items-center">
+              <div className="">10%</div>
+              <div>
+                <LineChartComp data={data} />
+              </div>
+              <div className="">100%</div>
             </div>
-            <div className="">100%</div>
+          </div>
+          <hr className="mx-4 border-t-2 " />
+          <div>
+            <h3 className="text-left ml-4 pt-2 mt-2 font-semibold text-md">
+              Sales vs List price
+            </h3>
+            <div className="flex flex-row justify-center px-6 items-center">
+              <div className="">10%</div>
+              <div>
+                <LineChartComp data={data} />
+              </div>
+              <div className="">100%</div>
+            </div>
           </div>
         </div>
-        <hr className="mx-4 border-t-2 " />
-        <div>
-          <h3 className="text-left ml-4 pt-2 mt-2 font-semibold text-md">
-            Sales vs List price
-          </h3>
-          <div className="flex flex-row justify-center px-6 items-center">
-            <div className="">10%</div>
-            <div>
-              <LineChartComp />
-            </div>
-            <div className="">100%</div>
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
-});
+};
 
 export default Document;

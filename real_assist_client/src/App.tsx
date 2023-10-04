@@ -4,7 +4,7 @@ import { PrintableDocument } from "./Componenets/PrintableDocument";
 function App() {
   return (
     <>
-      <PrintableDocument />
+      <PrintableDocument/>
     </>
   );
 }
