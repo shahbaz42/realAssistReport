@@ -1,0 +1,1 @@
+export { default as PrintableDocument } from './PrintableDocument';
