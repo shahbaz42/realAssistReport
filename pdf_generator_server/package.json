@@ -26,6 +26,8 @@
     "express-rate-limit": "^6.10.0",
     "express-validator": "^7.0.1",
     "mongoose": "^7.5.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "puppeteer": "^21.3.8",
+    "puppeteer-report": "^3.1.0"
   }
 }

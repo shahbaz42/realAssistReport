@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
 import { ILineChartData } from "../../types";
 
+
 const PrintableDocument = () => {
   const componentRef = useRef(null);
   const [data, setData] = useState<ILineChartData[]>([]);

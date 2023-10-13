@@ -12,7 +12,7 @@ const Document = ({ data, reference, isLoading }: DocumentProps) => {
   return (
     <div
       ref={reference}
-      className="w-screen md:max-w-[768px] h-screen mx-auto bg-[#f7f9fc]"
+      className="document-to-print"
     >
       {/* header */}
       <div className="bg-[#e8eefb]">

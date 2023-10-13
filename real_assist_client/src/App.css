@@ -1,0 +1,9 @@
+@media print {
+  .document-to-print {
+    @apply w-[768px] h-screen mx-auto bg-[#f7f9fc]
+  }
+}
+
+.document-to-print{
+    @apply w-screen md:max-w-[768px] h-screen mx-auto bg-[#f7f9fc]
+}

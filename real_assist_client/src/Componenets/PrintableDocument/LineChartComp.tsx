@@ -4,12 +4,15 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import  useWindowSize  from "../../hooks/useWindowSize";
 import { ILineChartData } from "../../types";
 
 export default function LineChartComp({ data }: { data: ILineChartData[] }) {
+  const {width, height}= useWindowSize();
+
   return (
     <LineChart
-      width={620}
+      width={Math.min(620, 0.70*width)}
       height={160}
       data={data}
       margin={{
