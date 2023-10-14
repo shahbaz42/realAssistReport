@@ -1,6 +1,7 @@
 import express from 'express';
+import ejs from 'ejs';
 import { generateRandomData } from '../utils';
-import report from "puppeteer-report";
+import report from "../lib/pdf-report-with-header-footer";
 import puppeteer from "puppeteer";
 import path from "path";
 import fs from 'fs';
@@ -45,8 +46,8 @@ router.get('/report', async (req, res) => {
 
     try {
         // you must use full path `home/puppeteer/index.hmtl`
-        const file = path.join(__dirname, 'index.html');
-        const result = await report.pdf(browser, file, {
+        const html = await ejs.renderFile(path.resolve(".", "src", "views", "report.ejs"))
+        const result = await report.pdfFromHTML(browser, html, {
             format: 'a4',
             margin: {
                 bottom: '10mm',
@@ -55,10 +56,8 @@ router.get('/report', async (req, res) => {
                 top: '10mm',
             },
         });
-
-        console.log(result)
+        
         const pdfBuffer = Buffer.from(result);
-
 
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader('Content-Disposition', 'inline; filename=report.pdf');
