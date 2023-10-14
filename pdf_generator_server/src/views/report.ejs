@@ -40,6 +40,10 @@
             justify-content: space-between;
         }
 
+        .rotate-90 {
+            transform: rotate(-90deg);
+        }
+
         .logo-icon {
             width: 20px;
             height: 20px;
@@ -110,27 +114,38 @@
         }
 
         .chart-box-header {
-            height: 24px;
-            background-color:#e8eefb;
-            border-radius: 12.76px 12.76px 0px 0px;
+            height: 32px;
+            background-color: #e8eefb;
+            border-radius: 15.76px 15.76px 0px 0px;
+            padding: 10px 0px 0px 20px;
+            color: #1463ff
         }
 
         .chart-box-content {
             background-color: #f1f3f4;
-            border-radius: 0px 0px 12.76px 12.76px;
+            border-radius: 0px 0px 15.76px 15.76px;
+            padding: 30px 40px 30px 0;
+        }
+
+        .chart-box-content-empty {
+            background-color: #f1f3f4;
+            border-radius: 0px 0px 15.76px 15.76px;
             padding: 30px;
         }
 
-        .chart-container{
-            border-radius: 12.76px;
+        .chart-container {
+            border-radius: 15.76px;
             background-color: #ffffff;
-            padding: 45px;
+            padding: 20px;
         }
 
-        .empty{
-            height: 10px;
+        .empty {
+            height: 18px;
         }
 
+        .y-label{
+            font-size: 15px;
+        }
     </style>
 </head>
 
@@ -139,7 +154,7 @@
         <div id="header">
             <div class="flex justify-between">
                 <div class="flex justify-center">
-                    <img class="logo-icon" src="http://localhost:3000/realAssistLogo.png" alt="Google" />
+                    <img class="logo-icon" src='<%- DEPLOYED_URI %>/realAssistLogo.png' alt="Google" />
                     <!-- Remember to change this to the realAssist logo src -->
                     <p class="logo-text">RealAssist.AI
                     <p>
@@ -154,8 +169,8 @@
         <div class="chart-box">
             <div class="chart-box-header">
             </div>
-            <div class="chart-box-content">
-                <div class="chart-container empty" >
+            <div class="chart-box-content-empty">
+                <div class="chart-container empty">
                 </div>
             </div>
         </div>
@@ -163,7 +178,16 @@
         <div class="chart-box">
             <div class="chart-box-header">
             </div>
-            <div class="chart-box-content">
+            <div class="chart-box-content-empty">
+                <div class="chart-container empty">
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-box">
+            <div class="chart-box-header">
+            </div>
+            <div class="chart-box-content-empty">
                 <div class="chart-container empty">
                 </div>
             </div>
@@ -180,10 +204,43 @@
 
         <div class="chart-box">
             <div class="chart-box-header">
+                Burglary
             </div>
             <div class="chart-box-content">
-                <div class="chart-container">
-                    <canvas id="myChart"></canvas>
+                <div class="flex align-center">
+                    <div>
+                        <p class="rotate-90 y-label">Arrests</p>
+                    </div>
+                    <div class="chart-container" style="width: 100%">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-box" style="margin-top:60px">
+            <div class="chart-box-header">
+            </div>
+            <div class="chart-box-content-empty">
+                <div class="chart-container empty">
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-box">
+            <div class="chart-box-header">
+            </div>
+            <div class="chart-box-content-empty">
+                <div class="chart-container empty">
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-box">
+            <div class="chart-box-header">
+            </div>
+            <div class="chart-box-content-empty">
+                <div class="chart-container empty">
                 </div>
             </div>
         </div>
@@ -192,7 +249,7 @@
             <div class="grad-hr"></div>
             <div class="flex justify-between">
                 <div class="flex justify-center">
-                    <p class="footer-description">Report Generated on September 26, 2023</p>
+                    <p class="footer-description">Report Generated on October 14, 2023</p>
                 </div>
                 <div>
                     <p class="footer-doc-name">RealAssist Property Report | Page <span class="pageNumber"></span> <span
@@ -205,7 +262,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-
+        const labels = JSON.parse('<%- JSON.stringify(years) %>');
+        const burglary_data = JSON.parse('<%- JSON.stringify(burglary_data) %>');
         const Utils = {
             months: ({ count }) => {
                 const monthNames = [
@@ -231,15 +289,14 @@
         const DATA_COUNT = 7;
         const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
 
-        const labels = Utils.months({ count: 7 });
         const data = {
             labels: labels,
             datasets: [
                 {
-                    label: 'Dataset 2',
-                    data: Utils.numbers(NUMBER_CFG),
+                    label: 'No of Burglaries',
+                    data: burglary_data,
                     borderColor: "#1463ff",
-                    backgroundColor: "#ffffff",
+                    backgroundColor: "#1463ff",
                 }
             ]
         };
@@ -252,13 +309,15 @@
                 animation: false,
                 plugins: {
                     legend: {
+                        display: false,
                         position: 'bottom',
                     },
                     title: {
-                        display: true,
-                        text: 'Chart.js Line Chart'
+                        display: false,
+                        position: 'left',
+                        text: 'Arrests'
                     }
-                }
+                },
             },
         };
 

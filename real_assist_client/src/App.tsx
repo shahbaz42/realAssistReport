@@ -1,10 +1,11 @@
 import "./App.css";
-import { PrintableDocument } from "./Componenets/PrintableDocument";
+import { PrintButtonPage } from "./Componenets/PrintButtonPage";
 
 function App() {
   return (
     <>
-      <PrintableDocument/>
+      {/* <PrintableDocument/> */}
+      <PrintButtonPage />
     </>
   );
 }
