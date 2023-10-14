@@ -20,6 +20,7 @@ export interface Page {
     options?: WaitForOptions & { referer?: string }
   ): Promise<unknown | null>;
   setContent(html: string, options?: WaitForOptions | undefined): Promise<void>;
+  waitForLoadState?(state?: "networkidle" | "domcontentloaded" | "load"): Promise<void>;
   evaluate<
     Params extends unknown[],
     Func extends EvaluateFunc<Params> = EvaluateFunc<Params>

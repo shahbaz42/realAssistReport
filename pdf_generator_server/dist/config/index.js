@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.API_KEY = exports.DB_URI = exports.PORT = void 0;
+exports.DEPLOYED_URI = exports.API_KEY = exports.DB_URI = exports.PORT = exports.CRIME_API_URL = void 0;
 const dotEnv = __importStar(require("dotenv"));
 if (process.env.NODE_ENV !== 'prod') {
     const configFile = `./.env.${process.env.NODE_ENV}`;
@@ -32,7 +32,9 @@ if (process.env.NODE_ENV !== 'prod') {
 else {
     dotEnv.config();
 }
+exports.CRIME_API_URL = process.env.CRIME_API_URL || 'https://api.usa.gov/crime/fbi/cde/arrest/state/AK/all?from=2015&to=2020&API_KEY=iiHnOKfno2Mgkt5AynpvPpUQTEyxE77jo1RU8PIv';
 exports.PORT = process.env.PORT || 3000;
 exports.DB_URI = process.env.DB_URI || '';
 exports.API_KEY = process.env.API_KEY || '';
+exports.DEPLOYED_URI = process.env.DEPLOYED_URI || '';
 //# sourceMappingURL=index.js.map
