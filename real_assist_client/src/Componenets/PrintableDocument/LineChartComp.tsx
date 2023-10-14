@@ -8,7 +8,7 @@ import  useWindowSize  from "../../hooks/useWindowSize";
 import { ILineChartData } from "../../types";
 
 export default function LineChartComp({ data }: { data: ILineChartData[] }) {
-  const {width, height}= useWindowSize();
+  const {width}= useWindowSize();
 
   return (
     <LineChart
