@@ -13,6 +13,7 @@ app.use(rateLimit({ // rate limit
 app.use(morgan('dev')); // logging
 app.use(express.json()); 
 app.use(cors()); // cors
+app.set("view engine", "ejs");
 
 app.get('/health', (req: Request, res: Response) => { // for AWWS EB health check
     res.status(200).send('ok');
