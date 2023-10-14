@@ -50,10 +50,10 @@ router.get('/report', async (req, res) => {
         const result = await report.pdfFromHTML(browser, html, {
             format: 'a4',
             margin: {
-                bottom: '10mm',
-                left: '10mm',
-                right: '10mm',
-                top: '10mm',
+                bottom: '4mm',
+                left: '4mm',
+                right: '4mm',
+                top: '4mm',
             },
         });
         
@@ -65,6 +65,10 @@ router.get('/report', async (req, res) => {
     } finally {
         await browser.close();
     }
+});
+
+router.get('/previewReport', async (req, res) => {
+    res.render('report');
 });
 
 export default router;
